@@ -1,3 +1,5 @@
+# https://github.com/prisma/prisma/blob/main/docker/mongodb_replica/Dockerfile
+
 FROM mongo:4
 
 # we take over the default & start mongo in replica set mode in a background task
