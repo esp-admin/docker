@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+  db-link:
+    driver: bridge
+  tunnel-link:
+    driver: bridge
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: bitnami/mongodb
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ROOT_PASSWORD=password123
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    volumes:
+      - ./mongodb:/bitnami/mongodb
+    networks:
+      - db-link
+
+  nuxt:
+    container_name: nuxt
+    image: becemgharbi/esp-admin
+    env_file: .env
+    depends_on:
+      - mongodb
+    environment:
+      - DATABASE_URL=mongodb://root:password123@mongodb/esp-admin?authSource=admin&retryWrites=true&w=majority
+    networks:
+      - db-link
+      - tunnel-link
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARED_TUNNEL_TOKEN}
+    depends_on:
+      - nuxt
+    networks:
+      - tunnel-link
