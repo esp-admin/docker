@@ -9,15 +9,14 @@ networks:
 services:
   mongodb:
     container_name: mongodb
-    image: bitnami/mongodb
+    build: .
     environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_NAME=rs0
-      - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=prisma
+      - MONGO_REPLICA_HOST=localhost
+      - MONGO_REPLICA_PORT=27018
     volumes:
-      - ./mongodb:/bitnami/mongodb
+      - ./mongodb:/data/db
     networks:
       - db-link
 
@@ -28,7 +27,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - DATABASE_URL=mongodb://root:password123@mongodb:27017/esp-admin?retryWrites=true&w=majority&authSource=admin&directConnection=true
+      - DATABASE_URL=mongodb://root:prisma@mongodb:27018/esp-admin?directConnection=true&authSource=admin
     networks:
       - db-link
       - tunnel-link
