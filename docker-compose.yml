@@ -27,7 +27,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - DATABASE_URL=mongodb://root:password123@mongodb/esp-admin?authSource=admin&retryWrites=true&w=majority
+      - DATABASE_URL=mongodb://root:password123@mongodb/esp-admin?authSource=admin&retryWrites=true&w=majority&directConnection=true
     networks:
       - db-link
       - tunnel-link
