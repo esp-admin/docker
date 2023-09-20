@@ -5,9 +5,11 @@ This repo proposes a docker-compose to self-host the application. The included s
 - `cloudflare/cloudflared` to proxy the application on Cloudflare edges with SSL termination, [link](https://hub.docker.com/r/cloudflare/cloudflared/tags).
 
 ## Prerequisites
-1. Website on Cloudflare with nameservers. Make sure the certificate authority is Let's Encrypt.
-2. Account on HiveMQ cloud for secure MQTT broker. Make sure the certificate authority is Let's Encrypt.
-3. Installed Docker and docker-compose
+- Website on Cloudflare with nameservers. Make sure the certificate authority is Let's Encrypt.
+- Installed Docker and docker-compose
+- S3 compatible object storage server such as Cloudflare R2.
+- Email provider account, can be Sendgrid or Resend.
+- Secure MQTT broker such as HiveMQ cloud. Make sure the certificate authority is Let's Encrypt.
 
 ## Setup
 1. Configure [Cloudflare tunnel](https://github.com/cloudflare/cloudflared) to expose `http://nuxt:3000`.
