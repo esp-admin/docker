@@ -6,7 +6,7 @@ This repo proposes a docker-compose to self-host the application. The included s
 
 ## Prerequisites
 - Website on Cloudflare with nameservers. Make sure the certificate authority is Let's Encrypt.
-- Installed Docker and docker-compose
+- Installed docker engine and docker compose
 - S3 compatible object storage server such as Cloudflare R2.
 - Email provider account, can be Sendgrid or Resend.
 - Secure MQTT broker such as HiveMQ cloud. Make sure the certificate authority is Let's Encrypt.
