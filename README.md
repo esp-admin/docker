@@ -9,7 +9,7 @@ This repo proposes a docker-compose to self-host the application. The included s
 ## Prerequisites
 
 1. Website on Cloudflare.
-2. Installed Docker and docker-compose
+2. Installed docker engine and docker compose
 3. Application server and MQTT broker have the same certificate authority (e.g Let's Encrypt).
 
 ## Setup
