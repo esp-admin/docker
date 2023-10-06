@@ -28,6 +28,8 @@ services:
       - mongodb
     environment:
       - DATABASE_URL=mongodb://root:prisma@mongodb:27018/esp-admin?directConnection=true&authSource=admin
+    volumes:
+      - ./uploads:/src/uploads
     networks:
       - db-link
       - tunnel-link
