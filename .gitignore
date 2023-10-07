@@ -1,3 +1,5 @@
 mongodb/
 uploads/
 .env
+mosquitto/data
+mosquitto/log

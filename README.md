@@ -20,3 +20,6 @@ This repo proposes a docker-compose to self-host the application. The included s
 4. Execute `docker-compose up -d` to start.
 5. Run `docker exec -it nuxt npx prisma db push --skip-generate` to effect database migration.
 6. Restart containers `docker-compose restart`.
+
+
+    # mosquitto_passwd -c -b /home/mosquitto/password_file.txt admin pass1234
