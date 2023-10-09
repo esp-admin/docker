@@ -3,7 +3,6 @@
 This repo proposes a docker-compose to self-host the application. The included services are
 
 - `becemgharbi/esp-admin` to run the full-stack application, [link](https://hub.docker.com/r/becemgharbi/esp-admin).
-- `mongo` to run a mongodb instance with replica set for Prisma support, [link](https://hub.docker.com/_/mongo).
 - `eclipse-mosquitto` to run mqtt broker, [link](https://hub.docker.com/_/eclipse-mosquitto).
 
 ## Prerequisites
@@ -16,7 +15,7 @@ This repo proposes a docker-compose to self-host the application. The included s
 1. Clone this repository.
 2. Rename `example.env` to `.env` and set variables.
 3. Execute `docker-compose up -d` to start.
-4. Run `docker exec -it nuxt npx prisma db push --skip-generate` to effect database migration.
+4. Run `docker exec -it nuxt npx prisma migrate dev --schema prisma/sql.schema.prisma  --skip-generate` to effect database migration.
 5. Set mosquitto password
     - Run `docker exec mosquitto chown root /mosquitto/config/password_file.txt` to set permissions.
    - Run `docker exec mosquitto mosquitto_passwd -c -b /mosquitto/config/password_file.txt {USERNAME} {PASSWORD}` to change password.

@@ -1,37 +1,17 @@
 version: '3'
 
-networks:
-  db-link:
-    driver: bridge
-
 services:
-  mongodb:
-    container_name: mongodb
-    build: .
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=prisma
-      - MONGO_REPLICA_HOST=localhost
-      - MONGO_REPLICA_PORT=27018
-    volumes:
-      - ./mongodb:/data/db
-    networks:
-      - db-link
-
   nuxt:
     container_name: nuxt
     image: becemgharbi/esp-admin
     env_file: .env
-    depends_on:
-      - mongodb
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=mongodb://root:prisma@mongodb:27018/esp-admin?directConnection=true&authSource=admin
+      - DATABASE_URL=file:/src/data/.db
     volumes:
       - ./uploads:/src/uploads
-    networks:
-      - db-link
+      - ./data:/src/data
 
   mosquitto:
     container_name: mosquitto
